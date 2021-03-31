@@ -1,0 +1,45 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+%% begin abstract format
+\makeatletter
+\renewenvironment{abstract}{%
+    \if@twocolumn
+      \section*{Resumen \\}%
+    \else %% <- here I've removed \small
+    \begin{flushright}
+        {\filleft\Huge\bfseries\fontsize{48pt}{12}\selectfont Resumen\vspace{\z@}}%  %% <- here I've added the format
+        \end{flushright}
+      \quotation
+    \fi}
+    {\if@twocolumn\else\endquotation\fi}
+\makeatother
+%% end abstract format
+%% begin abstract format
+\makeatletter
+\renewenvironment{abstract}{%
+    \if@twocolumn
+      \section*{Resumen \\}%
+    \else %% <- here I've removed \small
+    \begin{flushright}
+        {\filleft\Huge\bfseries\fontsize{48pt}{12}\selectfont Resumen\vspace{\z@}}%  %% <- here I've added the format
+        \end{flushright}
+      \quotation
+    \fi}
+    {\if@twocolumn\else\endquotation\fi}
+\makeatother
+%% end abstract format
+\begin{abstract}
+En los últimos años, las redes sociales incrementan notablemente su presencia en nuestras vidas. La huella de nuestra vida en los datos almacenados en ellas crece día a día. Facilitan la realización de ciertas labores las cuales antes se hacían de otra manera, tales como la conocer nuevas personas o la búsqueda de trabajo. Nuestros hobbies, nuestros gustos, nuestras redes de amigos, nuestras ideas políticas quedan reflejadas en ellas. Buscar trabajo o conocer a nuevas personas son solo algunas de las muchas posibilidades que ofrecen. En cualquier caso, todo queda registrado en esa huella que crece. 
+
+Este crecimiento, en cuanto al uso cada vez mayor de las redes sociales, ha ido generando cada vez más y más datos. En la referencia \cite{risesn}. se puede apreciar que desde los inicios de las redes sociales hasta el año 2019 se ha incrementado el número de usuarios activos a más de 2 billones, lo que produce cantidades ingentes de datos relativos a la actividad de cada persona en las redes sociales. 
+
+Dada esta gran cantidad de información se precisan de nuevos métodos que nos permitan extraer el conocimiento oculto en dichos datos. Actualmente existen múltiples algoritmos o herramientas para la extracción y análisis de los datos en redes sociales. Nuestro objetivo es la utilización de técnicas formales para la extracción de patrones que revelen información oculta que se encuentra presente en los datos y que no se ha descubierto.
+
+Este trabajo fin de grado propone desarrollar una herramienta que nos permita extraer, analizar y presentar conocimiento oculto en los datos extraídos de redes sociales con  un interfaz amigable al usuario en la que representar la información extraída. 
+\newline\newline
+\noindent\textit{\textbf{Keywords:} Análisis de Conceptos Formales, Análisis de Redes Sociales, Minería de Datos, R (Lenguaje de programación)}
+\end{abstract}
+\end{document}
+
+

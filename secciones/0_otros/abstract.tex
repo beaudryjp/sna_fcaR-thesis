@@ -1,0 +1,29 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+%% begin abstract format
+\makeatletter
+\renewenvironment{abstract}{%
+    \if@twocolumn
+      \section*{Abstract \\}%
+    \else %% <- here I've removed \small
+    \begin{flushright}
+        {\filleft\Huge\bfseries\fontsize{48pt}{12}\selectfont Abstract\vspace{\z@}}%  %% <- here I've added the format
+        \end{flushright}
+      \quotation
+    \fi}
+    {\if@twocolumn\else\endquotation\fi}
+\makeatother
+%% end abstract format
+\begin{abstract}
+
+In recent years, social networks have become increasingly present in our lives. The footprint of our lives in the data stored in them is growing day by day. They make it easier to carry out certain tasks that used to be done in a different way, such as meeting new people or looking for a job. Our hobbies, our tastes, our networks of friends, our political ideas are reflected in them, our political ideas are reflected in them. Looking for a job or meeting new people are just some of the many possibilities they offer. possibilities they offer. In any case, everything is recorded in this growing footprint. 
+
+This growth, in terms of the ever-increasing use of social networks, has generated more and more data. In the reference \cite{risesn}. it can be seen that from the beginning of social networks until the year 2019, the number of active users has increased to more than 2 billion, which produces huge amounts of data relating to the activity of each person on social networks. social networks. 
+
+Given this large amount of information, new methods are needed to extract the knowledge hidden in this data. data. Currently there are multiple algorithms or tools for the extraction and analysis of data in social networks. Our goal is to use formal techniques for extracting patterns that reveal hidden information that is present in the data and that we do not know about. present in the data and that has not been discovered.
+
+This final year dissertation proposes to develop a tool that allows us to extract, analyse and present hidden knowledge in data extracted from social networks with an interface extracted from social networks with a user-friendly interface to represent the extracted information. \newline\newline
+\noindent\textit{\textbf{Keywords:} Formal Concept Analysis, Social Network Analysis, Data Mining, R (Programming language)}
+\end{abstract}
+\end{document}

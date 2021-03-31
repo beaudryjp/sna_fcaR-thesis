@@ -1,0 +1,86 @@
+\documentclass[12pt, a4paper, twoside]{article}
+
+%% Preamble
+\usepackage{umatfgspanish}
+\usepackage{blindtext}
+\usepackage[natbib=true, style=numeric, sorting=none]{biblatex}
+\addbibresource{referencias.bib}
+
+\graphicspath{{images/}{../images/}}
+
+\usepackage{subfiles} % Best loaded last in the preamble
+
+\begin{document}
+
+%% Cover
+\includepdf[noautoscale=true, width=\paperwidth]{configuracion/cover.pdf}
+
+%% Title
+\clearpage
+\setcounter{page}{1}
+
+\includepdf[noautoscale=true, width=\paperwidth]{configuracion/title.pdf}
+
+\newpage
+
+%% Abstract
+\subfile{secciones/0_otros/abstract}
+
+\newpage
+
+\subfile{secciones/0_otros/resumen}
+
+\tableofcontents
+
+%% Sections
+\section{Introducción}
+\subfile{secciones/1_introduccion/introduccion}
+
+\newpage
+
+\section{Estado del arte}
+
+\newpage
+
+\section{Diseño del sistema}
+
+\newpage
+
+\section{Análisis y extracción de la información}
+
+\newpage
+
+\section{Implementación de la aplicación}
+
+\newpage
+
+
+\section{Conclusiones y Líneas Futuras}
+\subfile{secciones/6_conclusiones/conclusiones}
+
+\newpage
+
+\addcontentsline{toc}{section}{Referencias}
+%\subfile{sections/referencias}
+
+%% Bibliography
+%%\printbibliography
+
+\nocite{*}
+\printbibliography
+
+%%\bibliographystyle{plain} % We choose the "plain" reference style
+%%\bibliography{bibliography}
+
+\newpage
+
+%% Apendices
+\begin{umaappendices}
+  \section{Manual de Instalación}
+  \section{Manual de Usuario}
+
+\end{umaappendices}
+
+%% Back Cover
+\includepdf[noautoscale=true, width=\paperwidth]{configuracion/backcover.pdf}
+\end{document}
