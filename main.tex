@@ -2,13 +2,28 @@
 
 %% Preamble
 \usepackage{umatfgspanish}
-\usepackage{blindtext}
-\usepackage[natbib=true, style=numeric, sorting=none]{biblatex}
+%\let\oldsection\section% Store \section in \oldsection
+%\renewcommand{\section}{\cleardoublepage\oldsection}% Prepend new \section with \cleardoublepage
+\usepackage[
+    %backend=biber, 
+    natbib=true,
+    style=numeric,
+    sorting=debug
+]{biblatex}
 \addbibresource{referencias.bib}
 
 \graphicspath{{images/}{../images/}}
 
 \usepackage{subfiles} % Best loaded last in the preamble
+
+\newtheorem{definicion}{Definición}[subsection]
+\newtheorem{teorema}{Teorema}[subsection]
+\newtheorem{corolario}[teorema]{Corolario}
+\newtheorem{ejemplo}[teorema]{Ejemplo}
+\newtheorem{axioma}{Axioma}
+\newtheorem{proposicion}{\sc Proposición}[subsection]
+
+%\renewcommand{\listtablename}{Índice de Tablas}
 
 \begin{document}
 
@@ -33,51 +48,102 @@
 \tableofcontents
 
 %% Sections
+%\addcontentsline{toc}{section}{\listoftables}
+%\listoftables
+
+%\addcontentsline{toc}{section}{\listfigurename}
+%\listoffigures
+
+%% Introduccion
 \section{Introducción}
-\subfile{secciones/1_introduccion/introduccion}
 
-\newpage
+%% Introduccion > Motivacion
+\subsection{Motivación}
+\subfile{secciones/1_introduccion/motivacion}
+\newpage\cleardoublepage
 
-\section{Estado del arte}
+%% Introduccion > Objetivos
+\subsection{Objetivos}
+\subfile{secciones/1_introduccion/objetivos}
+\newpage\cleardoublepage
 
-\newpage
+%% Introduccion > Metodologia
+\subsection{Metodología}
+\subfile{secciones/1_introduccion/metodologia}
+\newpage\cleardoublepage
+
+%% Introduccion > Estructura del documento
+\subsection{Estructura del documento}
+\subfile{secciones/1_introduccion/estructura}
+\newpage\cleardoublepage
+
+
+\section{Arquitectura y Entorno Tecnologico}
+\subfile{secciones/2_arquitectura/tecnologias}
+\newpage\cleardoublepage
+
+
+\section{Análisis de Conceptos Formales}
+\subfile{secciones/3_fca/definicion}
+\newpage\cleardoublepage
+
+\subsection{Ejemplos}
+\subfile{secciones/3_fca/ejemplo}
+\newpage\cleardoublepage
+
+
 
 \section{Diseño del sistema}
+\subfile{secciones/3_sistema/database}
+\newpage\cleardoublepage
 
-\newpage
+\subfile{secciones/3_sistema/etl}
+\newpage\cleardoublepage
+
 
 \section{Análisis y extracción de la información}
+\subfile{secciones/4_analisis_info/info}
+\newpage\cleardoublepage
 
-\newpage
+
 
 \section{Implementación de la aplicación}
+\subfile{secciones/5_implementacion/shiny}
+\newpage\cleardoublepage
+\subfile{secciones/5_implementacion/logica}
+\newpage\cleardoublepage
 
-\newpage
+
 
 
 \section{Conclusiones y Líneas Futuras}
+\subsection{Conclusiones}
 \subfile{secciones/6_conclusiones/conclusiones}
+\newpage\cleardoublepage
 
-\newpage
+\subsection{Líneas Futuras}
+\subfile{secciones/6_conclusiones/futuro}
+\newpage\cleardoublepage
+
+
 
 \addcontentsline{toc}{section}{Referencias}
 %\subfile{sections/referencias}
 
 %% Bibliography
-%%\printbibliography
 
 \nocite{*}
 \printbibliography
-
-%%\bibliographystyle{plain} % We choose the "plain" reference style
-%%\bibliography{bibliography}
 
 \newpage
 
 %% Apendices
 \begin{umaappendices}
   \section{Manual de Instalación}
+  \subfile{secciones/0_apendices/manual_instalacion}
+  
   \section{Manual de Usuario}
+  \subfile{secciones/0_apendices/manual_usuario}
 
 \end{umaappendices}
 
