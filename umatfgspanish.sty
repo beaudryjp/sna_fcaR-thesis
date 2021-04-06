@@ -23,9 +23,7 @@
 \usepackage{comment}
 \usepackage{tikz} 
 \usepackage{amssymb}
-
-\counterwithin{figure}{section}
-
+\usepackage{float}
 
 %same as \subsubsection but level 4
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
@@ -36,8 +34,20 @@
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
+\newtheorem{definicion}{Definición}[subsection]
+\newtheorem{teorema}{Teorema}[subsection]
+\newtheorem{corolario}[teorema]{Corolario}
+\newtheorem{ejemplo}[teorema]{Ejemplo}
+\newtheorem{axioma}{Axioma}
+\newtheorem{proposicion}{\sc Proposición}[subsection]
+
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
 \addto\captionsspanish{ \renewcommand{\listfigurename}{Índice de Ilustraciones} }
 \addto\captionsspanish{ \renewcommand{\listtablename}{Índice de Tablas} }
+
+\renewcommand\spanishtablename{Tabla}
 
 %\setmonofont{[Iosevka.ttf]}
 

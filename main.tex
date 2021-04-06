@@ -7,8 +7,9 @@
 \usepackage[
     %backend=biber, 
     natbib=true,
-    style=numeric,
-    sorting=debug
+    %bibstyle=numeric,
+    %sorting=debug
+    style=numeric-comp,sorting=debug
 ]{biblatex}
 \addbibresource{referencias.bib}
 
@@ -16,33 +17,25 @@
 
 \usepackage{subfiles} % Best loaded last in the preamble
 
-\newtheorem{definicion}{Definición}[subsection]
-\newtheorem{teorema}{Teorema}[subsection]
-\newtheorem{corolario}[teorema]{Corolario}
-\newtheorem{ejemplo}[teorema]{Ejemplo}
-\newtheorem{axioma}{Axioma}
-\newtheorem{proposicion}{\sc Proposición}[subsection]
-
 %\renewcommand{\listtablename}{Índice de Tablas}
 
 \begin{document}
 
-%% Cover
+%% Portada
 \includepdf[noautoscale=true, width=\paperwidth]{configuracion/cover.pdf}
 
-%% Title
+%% Título
 \clearpage
 \setcounter{page}{1}
 
 \includepdf[noautoscale=true, width=\paperwidth]{configuracion/title.pdf}
-
 \newpage
 
 %% Abstract
 \subfile{secciones/0_otros/abstract}
-
 \newpage
 
+%% Resumen
 \subfile{secciones/0_otros/resumen}
 
 \tableofcontents
@@ -54,68 +47,77 @@
 %\addcontentsline{toc}{section}{\listfigurename}
 %\listoffigures
 
-%% Introduccion
+%% Introduccion - INICIO
 \section{Introducción}
 
-%% Introduccion > Motivacion
 \subsection{Motivación}
 \subfile{secciones/1_introduccion/motivacion}
 \newpage\cleardoublepage
 
-%% Introduccion > Objetivos
 \subsection{Objetivos}
 \subfile{secciones/1_introduccion/objetivos}
 \newpage\cleardoublepage
 
-%% Introduccion > Metodologia
 \subsection{Metodología}
 \subfile{secciones/1_introduccion/metodologia}
 \newpage\cleardoublepage
 
-%% Introduccion > Estructura del documento
 \subsection{Estructura del documento}
 \subfile{secciones/1_introduccion/estructura}
 \newpage\cleardoublepage
 
+%% Introduccion - FIN
 
-\section{Arquitectura y Entorno Tecnologico}
+%% Arquitectura y Entorno Tecnológico - INICIO
+\section{Arquitectura y Entorno Tecnológico}
 \subfile{secciones/2_arquitectura/tecnologias}
 \newpage\cleardoublepage
+%% Introduccion - FIN
 
-
+%% Análisis de Conceptos Formales - INICIO
 \section{Análisis de Conceptos Formales}
 \subfile{secciones/3_fca/definicion}
 \newpage\cleardoublepage
 
-\subsection{Ejemplos}
+\subsection{Ejemplo}
 \subfile{secciones/3_fca/ejemplo}
 \newpage\cleardoublepage
 
+\subsection{Ejemplo con fcaR}
+\subfile{secciones/3_fca/fcaR}
+\newpage\cleardoublepage
+%% Análisis de Conceptos Formales - FIN
 
 
+%% Diseño del sistema - INICIO
 \section{Diseño del sistema}
-\subfile{secciones/3_sistema/database}
+\subsection{Procesos ETC}
+\subfile{secciones/4_sistema/etl}
 \newpage\cleardoublepage
 
-\subfile{secciones/3_sistema/etl}
-\newpage\cleardoublepage
+%\subsection{Bases de datos}
+%\subfile{secciones/4_sistema/database}
+%\newpage\cleardoublepage
+%% \textbf{Diseño del sistema} - FIN
 
 
+%% Análisis y extracción de la información - INICIO
 \section{Análisis y extracción de la información}
 \subfile{secciones/4_analisis_info/info}
 \newpage\cleardoublepage
+%% Análisis y extracción de la información - FIN
 
 
-
+%% Implementación de la aplicación - INICIO
 \section{Implementación de la aplicación}
 \subfile{secciones/5_implementacion/shiny}
 \newpage\cleardoublepage
 \subfile{secciones/5_implementacion/logica}
 \newpage\cleardoublepage
+%% Implementación de la aplicación - FIN
 
 
-
-
+%% Conclusiones y Líneas Futuras - INICIO
 \section{Conclusiones y Líneas Futuras}
 \subsection{Conclusiones}
 \subfile{secciones/6_conclusiones/conclusiones}
@@ -124,18 +126,14 @@
 \subsection{Líneas Futuras}
 \subfile{secciones/6_conclusiones/futuro}
 \newpage\cleardoublepage
+%% Conclusiones y Líneas Futuras - FIN
 
-
-
+%% Bibliografía
+%\nocite{*}
+%\printbibliography
 \addcontentsline{toc}{section}{Referencias}
-%\subfile{sections/referencias}
-
-%% Bibliography
-
-\nocite{*}
-\printbibliography
-
-\newpage
+\subfile{secciones/referencias}
+\newpage\cleardoublepage
 
 %% Apendices
 \begin{umaappendices}
@@ -147,6 +145,7 @@
 
 \end{umaappendices}
 
-%% Back Cover
+
+%% Contraportada
 \includepdf[noautoscale=true, width=\paperwidth]{configuracion/backcover.pdf}
 \end{document}

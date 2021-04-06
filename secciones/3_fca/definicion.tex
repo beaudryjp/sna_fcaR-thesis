@@ -2,7 +2,7 @@
 
 \begin{document}
 
-AFC o Análisis de Conceptos Formales\cite{fca} es una teoría matemática que está orientada a para el análisis de datos usando contextos formales y retículos de conceptos, especialmente útil para extraer y representar información de un conjunto de datos. 
+Análisis de Conceptos Formales o AFC\cite{fca} es una teoría matemática basada en la teoría de retículos y en la lógica, está orientada para el análisis de datos ya que permite encontrar información oculta la cual no se puede obtener con otros métodos de aprendizaje computacional. 
 
 
 \subsection{Definiciones previas}
@@ -15,7 +15,9 @@ Para las definiciones que aparecen a continuación solo consideramos los conjunt
 Se dice que una \textbf{relación binaria} R entre dos conjuntos A y B es un conjunto con todos los pares (a, b) con $a \in A$ y $b \in B$., es decir, un subconjunto de su producto Cartesiano $A \times B$, el conjunto de todos los pares de este tipo.
 \end{definicion}
 
-También se puede escribir de la forma $aRb$ en vez de $(a,b) \in R$. Si $A = B$ entonces $R \subseteq A \times A$ es llamado una relación binaria sobre el conjunto A.
+También se puede escribir de la forma $aRb$ en vez de $(a,b) \in R$. 
+
+Si $A = B$ entonces $R \subseteq A \times A$ es llamado una relación binaria sobre el conjunto A.
 
 
 \begin{definicion}
@@ -27,21 +29,23 @@ Se dice que R una relación binaria R sobre un conjunto A es una \textbf{relaci�
 \end{itemize}
 \end{definicion}
 
-Se usa el símbolo $\leq$ para el orden parcial, y en caso de $a \neq b$ y $a \leq b$ se escribe $a \leq b$. Se lee $a \leq b$ como ``a es menor o igual a b``. Un conjunto parcialmente ordenado es un par $(P, \leq)$, dónde \textit{P} es un conjunto y $\leq$ es una relación de orden parcial sobre \textit{P}.
+Se usa el símbolo $\leq$ para el orden parcial, y en caso de $a \neq b$ y $a \leq b$ se escribe $a \leq b$. Se lee $a \leq b$ como ``a es menor o igual a b``. 
+Un conjunto parcialmente ordenado es un par $(P, \leq)$, dónde \textit{P} es un conjunto y $\leq$ es una relación de orden parcial sobre \textit{P}.
 
 
 \begin{definicion}
 Dado un conjunto parcialmente ordenado $(P,\leq)$, un elemento a es \textbf{anterior} a b, si $a \leq b$ y no un elemento c tal que $a \leq c \leq b$ . En este caso, b es \textbf{posterior} a, y se escribe como $a \prec b$.
 \end{definicion}
 
-Todo conjunto parcialmente ordenado finito $(P,\leq)$ se puede dibujar como un diagrama de Hasse. Elementos de \textit{P} se representan mediante círculos pequeños en el plano. Si $a \leq b$, el círculo correspondiente a \textit{a} se representa en un punto más alto que el círculo correspondiente a \textit{b}, y los dos círculos están conectados mediante una línea. 
+Todo conjunto parcialmente ordenado finito $(P,\leq)$ se puede dibujar como un diagrama de Hasse. 
+Elementos de \textit{P} se representan mediante círculos pequeños en el plano. Si $a \leq b$, el círculo correspondiente a \textit{a} se representa en un punto más alto que el círculo correspondiente a \textit{b}, y los dos círculos están conectados mediante una línea. 
 
 
 \begin{definicion}
 Sea $(P,\leq)$ un conjunto parcialmente ordenado y A un subconjunto de $P$. Una \textbf{cota inferior} de $A$ es un elemento $l$ de $P$ con $l \leq A$ para todo $a \in A$. Una \textbf{cota superior} de $A$ se define de forma análoga. Se denomina ínfimo de $A$ a la mayor de estas cotas inferiores y se denota como $inf A$ o $\bigwedge A$. De forma analoga, se denomina supremo de $A$ a la menor de estas cotas superiores y se denota como $sup A$ o $\bigvee A$.
 \end{definicion}
 
-Para $A = {a,b}$ también se puede escribir $x \wedge y$ para $inf A$ y $x \vee y$ para $sup A$.
+Para $A = {\{a,b\}}$ también se puede escribir $x \wedge y$ para $inf A$ y $x \vee y$ para $sup A$.
 
 
 \begin{definicion}
@@ -130,6 +134,9 @@ de forma análoga para subconjuntos \textbf{infimamente denso}
 \end{definicion}
 
 \newpage\cleardoublepage
+
+
+
 
 \subsection{Definición formal de AFC}
 
