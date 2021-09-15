@@ -1,0 +1,13 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+Durante la realización de este proyecto se han encontrado algunas dificultades que han hecho que se retrase el desarrollo del proyecto en sí. \\
+
+La escasez de información referente a la configuración e instalación de un servidor \Gls{shiny} en un contenedor \Gls{docker} donde se requiere que esté aplicación se conecte a un servidor de base de datos externo, la cual a la hora de compilar la imagen personalizada la aplicación no era capaz de conectarse debido a la ausencia de librerías del sistema operativo. La solución a esto se trata de instalar y compilar varias librerías referentes a servidores de bases de datos en el mismo contenedor para que cuando el paquete de \textit{R} realice la llamada esta sea comprendida por el sistema operativo. \\
+
+Uno de los principales dificultades durante este proyecto se ha encontrado en el apartado de análisis de los datos, en el cual se descargaba un conjunto de datos de un tamaño considerable con más de 20,000 registros y a la hora de aplicar el análisis diseñado este hacía que se colgará la aplicación debido al gran consumo de memoria, ya que un conjunto de dicho tamaño puede generar un contexto formal con más de 500,000 reglas y para esto necesita una gran cantidad de memoria. Para solucionar este problema se ha tratado de reducir los datos con los que se trabaja pero esto no tuvo éxito ya que se seguía obteniendo un conjunto de datos relativamente grande. La solución encontrada, fue en base al conjunto de datos, aplicarle el algoritmo \Gls{apriori} con unos parámetros para poder filtrar y reducir las reglas que se obtuvieran, con esto obtener las reglas no redundantes y crear el contexto formal en base a estas reglas. Consiguiendo que se reduzca el tiempo de ejecución necesaria para poder realizar el análisis. \\
+
+Otro inconveniente encontrada es relativa al entorno de desarrollo \gls{rstudio}, en la cual cada vez que se lanza la aplicación y posteriormente esta se finaliza, este entorno no realiza una limpieza de los objetos en memoria permitiendo que se vaya acumulando el consumo de memoria de la aplicación hasta llegar al limite de memoria del equipo en cuestión. La solución encontrada para este problema es limpiar los objetos de la zona de trabajo y reiniciar la sesión de \textit{\gls{rlang}}. Con esto se reinicializa el proceso de la sesión \textit{\gls{rlang}} y permitiendo liberar memoria del equipo de desarrollo.  \\
+
+\end{document}

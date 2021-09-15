@@ -1,0 +1,38 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+Los requisitos no funcionales deben verse como aquellas características que permite valorar la calidad y el correcto desarrollo del proyecto. Para cada requisito no funcional se establece un código formado especificado de la siguiente forma: \textbf{NFR-XX}, donde la parte correspondiente a \textit{XX} referencia a un código numérico formado por dos números.
+
+\begin{itemize}
+    \item \textbf{NFR-01: Rendimiento}
+    \begin{itemize}
+        \item \textit{El sistema no debe tardar más de tres segundos en mostrar los resultados de una búsqueda}.
+    \end{itemize}
+    \item \textbf{NFR-02: Escalabilidad}
+    \begin{itemize}
+        \item \textit{La base de datos deberá de disponer de un pool de conexiones configurables para que la aplicación sea escalable en función de los recursos hardware y software disponibles}.
+    \end{itemize}
+    \item \textbf{NFR-03: Disponibilidad}
+    \begin{itemize}
+        \item \textit{El sitio web de la aplicación será accesible empleando cualquier navegador web. Además, todas las funcionalidades de la aplicación deberán ser accesibles a través de la interfaz de usuario}.
+    \end{itemize}
+    \item \textbf{NFR-04: Seguridad}
+    \begin{itemize}
+        \item \textit{Todas las comunicaciones externas entre los servidores de datos, la aplicación y el cliente del sistema deben estar cifradas utilizando certificados SSL. Así mismo, garantizamos que el servidor esté en la nube con lo cual evitamos los problemas de seguridad que puedan haber si fuese un servidor local}.
+    \end{itemize}
+    \item \textbf{NFR-05: Mantenibilidad}
+    \begin{itemize}
+        \item \textit{El código fuente que se implemente en el lenguaje de programación pertinente seguirá las reglas de estilo del mismo}.
+    \end{itemize}
+    \item \textbf{NFR-06: Integridad de los datos}
+    \begin{itemize}
+        \item \textit{Los datos se mantendrán correctos y completos tras ser modificados con sentencias INSERT, DELETE o UPDATE}.
+    \end{itemize}
+    \item \textbf{NFR-07: Usabilidad}
+    \begin{itemize}
+        \item \textit{La aplicación cuenta con un diseño que se adapta al tamaño de pantalla de cualquier dispositivo}.
+    \end{itemize}
+\end{itemize}
+
+\end{document}

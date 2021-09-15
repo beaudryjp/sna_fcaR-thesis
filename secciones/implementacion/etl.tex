@@ -1,0 +1,108 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+
+En este apartado se comenta sobre la implementación del apartado de la extracción de datos en la aplicación.  \\
+
+Esta implementación se encuentra distribuida en varios ficheros, las cuales se mencionan a continuación:
+
+\begin{itemize}
+    \item \textbf{award.R}. Fichero que engloba todos los métodos para el tratamiento de las recompensas y monedas que se encuentran asociadas a las publicaciones y comentarios de los usuarios.
+    \item \textbf{comment.R}. Fichero que engloba el tratamiento de los comentarios de una publicación.
+    \item \textbf{post.R}. Fichero principal donde se realiza todo el proceso de extracción e inserción de los datos.
+    \item \textbf{subreddit.R}. Fichero en la cual viene implementado el tratamiento de los datos referentes a los \glspl{subreddit}.
+    \item \textbf{user.R}. Fichero en la cual se trata los datos referentes a los autores de las publicaciones y los usuarios asociados a los comentarios de cada publicación.
+\end{itemize}
+
+\subsubsection{\Glspl{subreddit}}
+
+Si se parte de una aplicación en la cual no hay información presente en la base de datos, se puede importar una lista predefinida de \glspl{subreddit} que se encuentra en la carpeta \textit{data}.  \\
+
+Así mismo, en este fichero existen dos métodos para la obtención de un número de publicaciones de todos los \glspl{subreddit} existentes en la base de datos o de una lista de \glspl{subreddit} más reducida.  \\
+
+NOTA: En ambos casos la obtención de los datos esta limitado a la conexión de internet del usuario y del límite de conexiones que establece \Gls{reddit}, por lo tanto en función del número de \glspl{subreddit} que se especifique o existan en la base de datos puede tardar de 5 minutos a 1 hora.
+
+\subsubsection{Publicaciones}
+
+Se parte de la base que se necesita una \gls{lru} de una publicación, una vez obtenido una \gls{lru} se realiza una petición \gls{get} para obtener la información de esta publicación en el formato \gls{json}.  \\
+
+Después, se empieza a normalizar la información obtenida del conjunto de datos en la cual se realizan las siguientes acciones:
+
+\begin{itemize}
+    \item Si la publicación no tiene una descripción se añade una descripción vacía.
+    \item Si el usuario no existe, el usuario ha sido eliminado, suspendido o dado de baja por cualquier motivo, se asigna un usuario por defecto.
+    \item Se quita todos los caracteres no alfa-numéricos del título y de la descripción.
+    \item De la \gls{lru} se quitan las comillas simples y se convierte las barras dobles por una única.
+    \item Se obtiene el identificador único del autor de la publicación para que en un paso posterior se obtenga la información relacionada con este usuario. Si este identificador no se encuentra se asigna un identificador genérico.
+    \item En base al \gls{subreddit} se extrae el identificador único al cual está asignado en la base de datos
+    \item Se obtiene aquellas publicaciones que no se han insertado en la base de datos y se ejecuta una función para que nos indique si por cada publicación este se ha insertado en la base de datos, en base a si se han insertado todos o falta alguna publicación por insertar se realiza la \textit{Acción 1 - Insertar todos} o \textit{Acción 2 - Insertar las publicaciones no existentes en el servidor de base de datos}.
+    \begin{itemize}
+        \item \textit{Acción 1 - Insertar todos}
+        \begin{itemize}
+            \item Por cada publicación del conjunto de datos se obtiene la información correspondiente al autor y se inserta en la base de datos. En un punto posterior entraremos más en detalle sobre el tratamiento de los usuarios.
+            \item Se inserta todas las publicaciones en la base de datos haciendo uso de la inserción múltiple que ofrece \gls{sql}.
+            \item Se obtiene las recompensas y monedas asociadas por cada publicación.
+            \item Si la opción de insertar los comentarios se encuentra activo (por defecto, esta opción se encuentra habilitado) se obtienen y se insertan en la base de datos.
+        \end{itemize}
+        \item \textit{Acción 2 - Insertar las publicaciones no existentes en el servidor de base de datos}
+        \begin{itemize}
+            \item Del conjunto de datos obtenemos aquellas publicaciones que no han sido insertadas.
+            \item Se realiza el mismo procedimiento que en el apartado \textit{Acción 1}.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+Una vez finalizado todo el proceso, se devuelve el conjunto de datos ya tratado para que sea manipulado e impreso por la aplicación web.
+
+\subsubsection{Comentarios}
+
+En este sub-apartado comentamos el proceso para el tratamiento de los comentarios de una publicación, en la cual recibe un conjunto de datos y por cada publicación presente en este conjunto se obtienen los comentarios.  \\
+
+Este proceso es el siguiente:
+
+\begin{itemize}
+    \item Por cada publicación se realiza lo siguiente:
+    \begin{itemize}
+        \item Se obtienen los comentarios de una publicación en la cual realiza una petición \gls{get} para obtener la información en el formato \gls{json} (está predefinido para obtener los 50 comentarios con más puntos, al establecer un número de comentarios más alto implica más lentitud a la hora de obtener y procesar los comentarios), una vez se obtiene el conjunto inicial se realiza un tratamiento y manipulación para conservar los datos de más interés referente a cada comentario realizado.
+        \item Se eliminan aquellas columnas del conjunto de datos que no son necesarias para la aplicación.
+        \item Se eliminan aquellos comentarios realizados por el usuario \textit{AutoModerator} o un usuario eliminado, ya que en el primer caso los comentarios son predefinidos y no son de interés, y en el segundo caso el comentario ha sido eliminado por algún motivo y tampoco es de interés conservar este dato.
+        \item De los comentarios restantes asociados a la publicación se realiza una eliminación de todo carácter no alfa-numérico en el campo referente a lo escrito por el usuario.
+        \item Se normaliza la fecha del comentario a un formato estándar y se obtiene el identificador único de la publicación.
+        \item De aquellos comentarios se comprueba si la publicación dispone de una descripción y se actualiza con la descripción de la publicación que se encuentra localizado en el conjunto de datos. Esto se debe a que se puede dar el caso en el que se crea la publicación sin descripción y posteriormente cuando se obtiene los comentarios asociados a esta publicación, la descripción de la publicación ha sido actualizado por el autor del mismo.
+        \item Por cada usuario presente en el conjunto de datos se obtiene la información referente a el mismo y se inserta en el servidor de base de datos.
+        \item Por último, se inserta en el servidor de base de datos estos comentarios asociados a una publicación.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Recompensas}
+
+En este sub-apartado comentamos el proceso para el tratamiento de las recompensas asociadas a una publicación, se recibe un conjunto de datos con todas las publicaciones.  \\
+
+El proceso para este tratamiento es el siguiente:
+
+\begin{itemize}
+    \item Se comprueba si en todas las publicaciones hay al menos 1 o más recompensas asociadas, en caso afirmativo se procede a realizar lo siguiente por cada publicación:
+    \begin{itemize}
+        \item Referente a la moneda se obtiene los identificadores de la misma, el nombre, la descripción, el precio y la recompensa asociada.
+        \item Referente a las recompensas asociadas a cada publicación se obtiene los identificadores de la publicación, de la moneda y la cantidad.
+        \item Una vez obtenidos estos datos se guardan en un conjunto diferente y procede con su inserción en el servidor de base de datos aquellas monedas y recompensas asociadas a la publicación que no se encuentran presentes.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection{Usuarios}
+
+En este sub-apartado comentamos el proceso para el tratamiento de los usuarios asociadas a una publicación la cual puede haber sido como autor o escritor de un comentario asociado a una publicación.  \\
+
+El proceso para el tratamiento de los usuarios es el siguiente:
+
+\begin{itemize}
+    \item Se comprueba si el usuario existe, una vez hecho esto se comprueba si se corresponde con los usuarios \textit{AutoModerator} o un usuario eliminado, en ambos casos se devuelve un conjunto con unos datos predefinidos.
+    \item Una vez pasado estas comprobaciones, se realiza una petición \gls{get} para obtener la información, se comprueba si se obtiene un resultado, en caso contrario significa que el usuario ha sido eliminado del sistema.
+    \item Se comprueba si el usuario ha sido suspendido, en caso afirmativo, se devuelve unos datos predefinidos.
+    \item Si el usuario tiene establecido una descripción en su perfil de usuario se elimina todos carácter no alfa-numérico.
+    \item Llegado a este punto, el usuario es un usuario válido y se encuentra activo, por tanto se procesa la información relacionada con el usuario y se inserta en el servidor de base de datos.
+\end{itemize}
+
+\end{document}

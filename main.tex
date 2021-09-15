@@ -1,6 +1,6 @@
 \documentclass[12pt, a4paper, twoside]{article}
 
-%% Preamble
+%% Precarga configuracion - INICIO
 \usepackage{umatfgspanish}
 %\let\oldsection\section% Store \section in \oldsection
 %\renewcommand{\section}{\cleardoublepage\oldsection}% Prepend new \section with \cleardoublepage
@@ -15,9 +15,12 @@
 
 \graphicspath{{images/}{../images/}}
 
-\usepackage{subfiles} % Best loaded last in the preamble
+\usepackage{subfiles}
+%% Precarga configuracion - FIN
 
-%\renewcommand{\listtablename}{Índice de Tablas}
+%% Glosario inicialización
+\makenoidxglossaries
+\subfile{secciones/glosario}
 
 \begin{document}
 
@@ -27,104 +30,148 @@
 %% Título
 \clearpage
 \setcounter{page}{1}
-
 \includepdf[noautoscale=true, width=\paperwidth]{configuracion/title.pdf}
 \newpage
 
 %% Abstract
-\subfile{secciones/0_otros/abstract}
+\subfile{secciones/otros/abstract}
 \newpage
 
 %% Resumen
-\subfile{secciones/0_otros/resumen}
+\subfile{secciones/otros/resumen}
 
 \tableofcontents
+\newpage\cleardoublepage
 
 %% Sections
 %\addcontentsline{toc}{section}{\listoftables}
 %\listoftables
 
-%\addcontentsline{toc}{section}{\listfigurename}
-%\listoffigures
+\phantomsection
+\addcontentsline{toc}{section}{\listfigurename}
+\listoffigures
 
 %% Introduccion - INICIO
 \section{Introducción}
 
 \subsection{Motivación}
-\subfile{secciones/1_introduccion/motivacion}
-\newpage\cleardoublepage
+\subfile{secciones/introduccion/motivacion}
+%\newpage
 
 \subsection{Objetivos}
-\subfile{secciones/1_introduccion/objetivos}
-\newpage\cleardoublepage
+\subfile{secciones/introduccion/objetivos}
+%\newpage
 
 \subsection{Metodología}
-\subfile{secciones/1_introduccion/metodologia}
-\newpage\cleardoublepage
+\subfile{secciones/introduccion/metodologia}
+%\newpage
 
 \subsection{Estructura del documento}
-\subfile{secciones/1_introduccion/estructura}
+\subfile{secciones/introduccion/estructura}
 \newpage\cleardoublepage
-
 %% Introduccion - FIN
+
+
+%% Análisis de los requisitos - INICIO
+\section{Catálogo de Requisitos}
+
+\subfile{secciones/requisitos/descripcion}
+
+\subsection{Requisitos Funcionales}
+\subfile{secciones/requisitos/funcionales}
+%\newpage
+
+\subsection{Requisitos No Funcionales}
+\subfile{secciones/requisitos/no-funcionales}
+%\newpage
+
+\subsection{Requisitos de Información}
+\subfile{secciones/requisitos/informacion}
+%\newpage
+
+\subsection{Casos de uso}
+\subfile{secciones/requisitos/casos}
+\newpage\cleardoublepage
+%% Análisis de los requisitos - FIN
+
 
 %% Arquitectura y Entorno Tecnológico - INICIO
 \section{Arquitectura y Entorno Tecnológico}
-\subfile{secciones/2_arquitectura/tecnologias}
+
+\subsection{Arquitectura del Sistema}
+\subfile{secciones/arquitectura/tecnologias}
+%\newpage
+
+\subsection{Lenguaje de Programación R}
+\subfile{secciones/arquitectura/lenguaje}
+%\newpage
+
+\subsection{Herramientas y Entornos de Desarrollo}
+\subfile{secciones/arquitectura/herramientas}
 \newpage\cleardoublepage
 %% Introduccion - FIN
 
 %% Análisis de Conceptos Formales - INICIO
 \section{Análisis de Conceptos Formales}
-\subfile{secciones/3_fca/definicion}
-\newpage\cleardoublepage
+
+\subfile{secciones/fca/descripcion}
+
+\subsection{Definiciones previas}
+\subfile{secciones/fca/previo}
+
+\subsection{Definición formal de Análisis de Conceptos Formales}
+\subfile{secciones/fca/definicion}
+%\newpage
 
 \subsection{Ejemplo}
-\subfile{secciones/3_fca/ejemplo}
-\newpage\cleardoublepage
+\subfile{secciones/fca/ejemplo}
+%\newpage
 
 \subsection{Ejemplo con fcaR}
-\subfile{secciones/3_fca/fcaR}
+\subfile{secciones/fca/fcaR}
 \newpage\cleardoublepage
 %% Análisis de Conceptos Formales - FIN
 
 
-%% Diseño del sistema - INICIO
-\section{Diseño del sistema}
-\subsection{Procesos ETC}
-\subfile{secciones/4_sistema/etl}
-\newpage\cleardoublepage
-
-%\subsection{Bases de datos}
-%\subfile{secciones/4_sistema/database}
-%\newpage\cleardoublepage
-%% \textbf{Diseño del sistema} - FIN
-
-
 %% Análisis y extracción de la información - INICIO
 \section{Análisis y extracción de la información}
-\subfile{secciones/4_analisis_info/info}
+
+\subsection{Extracción}
+\subfile{secciones/info/etl}
+%\newpage
+
+\subsection{Análisis}
+\subfile{secciones/info/analisis}
 \newpage\cleardoublepage
 %% Análisis y extracción de la información - FIN
 
 
 %% Implementación de la aplicación - INICIO
 \section{Implementación de la aplicación}
-\subfile{secciones/5_implementacion/shiny}
-\newpage\cleardoublepage
-\subfile{secciones/5_implementacion/logica}
+
+\subsection{Extracción de datos}
+\subfile{secciones/implementacion/etl}
+%\newpage
+
+\subsection{Aplicación Web Shiny}
+\subfile{secciones/implementacion/shiny}
 \newpage\cleardoublepage
 %% Implementación de la aplicación - FIN
 
 
 %% Conclusiones y Líneas Futuras - INICIO
 \section{Conclusiones y Líneas Futuras}
+
+\subsection{Dificultades encontradas durante el proyecto}
+\subfile{secciones/conclusiones/dificultades}
+%\newpage
+
 \subsection{Conclusiones}
-\subfile{secciones/6_conclusiones/conclusiones}
-\newpage\cleardoublepage
+\subfile{secciones/conclusiones/conclusiones}
+%\newpage
 
 \subsection{Líneas Futuras}
-\subfile{secciones/6_conclusiones/futuro}
+\subfile{secciones/conclusiones/futuro}
 \newpage\cleardoublepage
 %% Conclusiones y Líneas Futuras - FIN
 
@@ -137,11 +184,16 @@
 
 %% Apendices
 \begin{umaappendices}
+  \section{Glosario}
+  \setglossarystyle{mylong}
+  \printnoidxglossaries
+  
+
   \section{Manual de Instalación}
-  \subfile{secciones/0_apendices/manual_instalacion}
+  \subfile{secciones/apendices/manual_instalacion}
   
   \section{Manual de Usuario}
-  \subfile{secciones/0_apendices/manual_usuario}
+  \subfile{secciones/apendices/manual_usuario}
 
 \end{umaappendices}
 

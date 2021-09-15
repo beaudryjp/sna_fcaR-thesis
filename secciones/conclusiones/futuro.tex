@@ -1,0 +1,16 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+La principal mejora que se puede incluir en este proyecto es añadir más redes sociales a la aplicación para el estudio y análisis de los mismos, como pueden ser Facebook, LinkedIn, Discord u otros.
+Añadir estas redes incrementa la complejidad de la aplicación ya que por cada red social es necesario mirar si disponen de una \Gls{ipa} pública, si tienen establecido algún limite para realizar peticiones y qué datos se pueden obtener.
+De estos datos hay que estudiar la estructura que tiene y si es posible crear relaciones entre ellos ya que si no existen no será posible aplicar las técnicas de \Gls{afc} para el conjunto de datos. \\
+
+Otra mejora es facilitar la importación de un conjunto de datos en el cual se quiere descubrir la información oculta que se encuentra presente en dicho conjunto, para esto en la aplicación se habilitaría una opción para realizar dicha importación. Dependiendo del tamaño del conjunto de datos la importación puede tardar más o menos, no obstante una vez importado se ejecutará el proceso de normalización de datos para que estos tengan valores consistentes y validos. Posteriormente, una vez normalizado se aplicarán las técnicas de extracción de información y \gls{afc} sobre el conjunto de datos, pudiendo ver los resultados que se obtienen. \\
+
+Otro punto que sería interesante implementar, es la posibilidad de crear y gestionar tareas programadas para que ejecuten el proceso de extracción de datos con una serie de parámetros para que estos sean ejecutados de forma periódica con lo cual permitiría despreocuparnos de la inserción de nuevos datos en el servidor de base de datos.  \\
+
+Por último, otro punto interesante a incluir en este presente proyecto es la inclusión de técnicas de inteligencia artificial las cuales se pueden combinar con \gls{afc}, consiguiendo extraer mucha más información la cual puede ser útil para la realización de estudios más densos de una red social o tema o la implementación de aplicaciones como detección de spam, clasificación de usuarios, análisis de tendencias, etc...  \\
+
+
+\end{document}

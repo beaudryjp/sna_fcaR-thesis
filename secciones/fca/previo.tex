@@ -1,0 +1,133 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+Antes de dar la definición formal de \gls{afc}, es necesario recordar algunos conceptos de Álgebra.  \\
+
+Para las definiciones que aparecen a continuación solo consideramos los conjuntos finitos de objetos.
+
+\begin{definicion}
+Se dice que una \textbf{relación binaria} R entre dos conjuntos A y B es un conjunto con todos los pares (a, b) con $a \in A$ y $b \in B$, es decir, un subconjunto de su producto Cartesiano $A \times B$, el conjunto de todos los pares de este tipo.
+\end{definicion}
+
+También se puede escribir de la forma $aRb$ en vez de $(a,b) \in R$. 
+
+Si $A = B$ entonces $R \subseteq A \times A$ es llamado una relación binaria sobre el conjunto A.
+
+
+\begin{definicion}
+Se dice que R una relación binaria R sobre un conjunto A es una \textbf{relación de orden parcial}, si satisface las siguientes condiciones para todos los elementos $a,b,c \in A$:
+\begin{itemize}
+    \item $aRa$ (reflexividad)
+    \item $aRb$ y $bRa \Longrightarrow a = b$ (simetría)
+    \item $aRb$ y $bRc \Longrightarrow aRc$ (transitividad)
+\end{itemize}
+\end{definicion}
+
+Se usa el símbolo $\leq$ para el orden parcial, y en caso de $a \neq b$ y $a \leq b$ se escribe $a \leq b$. Se lee $a \leq b$ como ``a es menor o igual a b``. 
+Un conjunto parcialmente ordenado es un par $(P, \leq)$, dónde \textit{P} es un conjunto y $\leq$ es una relación de orden parcial sobre \textit{P}.
+
+
+\begin{definicion}
+Dado un conjunto parcialmente ordenado $(P,\leq)$, un elemento a es \textbf{anterior} a b, si $a \leq b$ y no un elemento c tal que $a \leq c \leq b$ . En este caso, b es \textbf{posterior} a, y se escribe como $a \prec b$.
+\end{definicion}
+
+Todo conjunto parcialmente ordenado finito $(P,\leq)$ se puede dibujar como un \gls{hasse}. 
+Elementos de \textit{P} se representan mediante círculos pequeños en el plano. Si $a \leq b$, el círculo correspondiente a \textit{a} se representa en un punto más alto que el círculo correspondiente a \textit{b}, y los dos círculos están conectados mediante una línea. 
+
+
+\begin{definicion}
+Sea $(P,\leq)$ un conjunto parcialmente ordenado y A un subconjunto de $P$. Una \textbf{cota inferior} de $A$ es un elemento $l$ de $P$ con $l \leq A$ para todo $a \in A$. Una \textbf{cota superior} de $A$ se define de forma análoga. Se denomina ínfimo de $A$ a la mayor de estas cotas inferiores y se denota como $inf A$ o $\bigwedge A$. De forma análoga, se denomina supremo de $A$ a la menor de estas cotas superiores y se denota como $sup A$ o $\bigvee A$.
+\end{definicion}
+
+Para $A = {\{a,b\}}$ también se puede escribir $x \wedge y$ para $inf A$ y $x \vee y$ para $sup A$.
+
+
+\begin{definicion}
+Un conjunto parcialmente ordenado $\textbf{L} = (L, \leq)$ es un retículo, si para cada par de elementos $a$ y $b$ en L el supremo $a \vee b$ y el ínfimo $a \wedge b$ siempre existe. $\textbf{L}$ es un retículo \textbf{completo} si todo subconjunto $X$ tiene supremo e ínfimo. Para cada retículo completo $\textbf{L}$ existe un único elemento supremo $\bigvee L$, llamado el \textbf{elemento identidad} del retículo, denotado como $\textbf{1}_L$. De forma análoga, el ínfimo $\textbf{0}_L$ se llama el \textbf{elemento cero}.
+\end{definicion}
+
+A continuación, detallamos la base para el funcionamiento de \gls{afc} y los contextos formales.
+
+\begin{definicion}
+Sea $\varphi : P \rightarrow Q$ y $\psi : P \rightarrow Q$ sean funciones biyectivas entre dos conjuntos parcialmente ordenados $(P,\leq)$ y $(Q,\leq)$. Esta pareja de funciones se llama una \textbf{conexión de Galois} entre conjuntos ordenados si:
+\begin{itemize}
+    \item $p_1 \leq p_2 \Longrightarrow \varphi p_1 \geq \varphi p_2$
+    \item $p_1 \leq p_2 \Longrightarrow \psi p_1 \geq \psi q_2$
+    \item $p \leq \psi \varphi p \Longrightarrow q \leq \varphi \psi q$
+\end{itemize}
+\end{definicion}
+
+\begin{definicion}
+Un \textbf{contexto formal} $\mathbb{K} = (G, M, I)$ consiste en dos conjuntos $G$ y $M$ y una relación $I$ entre $G$ y $M$. Los elementos de $G$ se llaman \textbf{objetos} y los elementos de $M$ se llaman \textbf{atributos} del contexto. La notación $gIm$ o $(g, m) \in I$ significa que el objeto $g$ tiene el atributo $m$.
+\end{definicion}
+
+
+\begin{definicion}
+Para $A \subseteq G$, sea
+\begin{center}
+    $A^{'} := { \{m \in M | (g, m) \in I\;para\;todo\;g \in A\} }$
+\end{center}
+y, para $B \subseteq M$, sea
+\begin{center}
+    $B^{'} := { \{g \in G | (g, m) \in I\;para\;todo\;m \in B\} }$
+\end{center}
+\end{definicion}
+Estos operadores se llaman \textbf{operadores de derivación} para $\mathbb{K} = (G, M, I)$
+
+
+\begin{definicion}
+Sea $(G, M, I)$ un contexto formal, los subconjuntos $A, A_1, A_2 \subseteq G$ y $B \subseteq M$ tenemos que:
+\begin{itemize}
+    \item $A_1 \subseteq A_2 \Longleftrightarrow A_1^{'} \subseteq A_2^{'}$
+    \item $A \subseteq A^{''}$
+    \item $A = A^{'''} (por\;tanto, A^{''''} = A^{''})$
+    \item $(A_1 \cup A_2)^{'} = A_1^{'} \cap A_2^{'}$
+    \item $A \subseteq B^{'} \Longleftrightarrow B \subseteq A^{'} \Longleftrightarrow A \times B \subseteq I$
+\end{itemize}
+\end{definicion}
+
+Para el subconjunto de atributos también se aplica propiedades parecidas.
+
+
+\begin{definicion}
+Un \textbf{operador de cierre} sobre el conjunto G es función biyectiva $\varphi : 2^{G} \longrightarrow 2^{G}$ con las siguientes propiedades:
+\begin{itemize}
+    \item $\varphi \varphi X = \varphi X$ (\textbf{idempotencia})
+    \item $X \subseteq \varphi X$ (\textbf{extensión})
+    \item $X \subseteq Y \Longrightarrow \varphi X \subseteq \varphi Y$ (\textbf{monotonicidad})
+\end{itemize}
+\begin{center}
+    Para un operador de cierre $\varphi$ el conjunto $\varphi X$ se llama el \textbf{cierre} de $X$. \\
+    Un subconjunto $X \subseteq G$ se dice que esta \textbf{cerrado} si $\varphi X = X$
+\end{center}
+\end{definicion}
+
+
+
+\begin{definicion}
+Por cada par de conceptos formales $(A_1, B_1)$ y $(A_2, B_2)$ de un contexto formal su \textbf{mayor subconcepto común} se define como:
+\begin{center}
+    $(A_1, B_1) \wedge (A_2, B_2) = (A_1 \cap A_2, (B_1 \cup B_2)^{''}) $. \\
+    El \textbf{menor superconcepto común} de $(A_1, B_1)$ y $(A_2, B_2)$ viene dado por \\
+    $(A_1, B_1) \vee (A_2, B_2) = ((A_1 \cup A_2)^{''}, B_1 \cap B_2) $. \\
+    Se puede llamar supremo a ``menor subconcepto común`` e ínfimo a ``mayor subconcepto común``.
+\end{center}
+\end{definicion}
+
+
+
+\begin{definicion}
+Un subconjunto $X \subseteq L$ de un retículo $(L, \leq)$ se llama \textbf{supremamente denso} si cualquier elemento del retículo $\upsilon \in L$ se puede representar como
+\begin{center}
+    $\upsilon = \bigvee \{ x \in X | x \leq \upsilon \}$
+\end{center}
+de forma análoga para subconjuntos \textbf{infimamente denso}
+\begin{center}
+    $\upsilon = \bigwedge \{ x \in X | x \leq \upsilon \}$
+\end{center}
+\end{definicion}
+
+%\newpage
+
+\end{document}

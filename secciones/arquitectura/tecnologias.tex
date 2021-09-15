@@ -1,0 +1,68 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+    
+\begin{comment}
+    \begin{itemize}
+        \item R: Lenguaje de programación bajo el cual esta escrito el proyecto.
+        \item RStudio: Entorno de desarollo de R
+        \item Overleaf: Herramienta online para la escritura de la memoria.
+        \item MariaDB: Servidor de base de datos.
+        \item phpMyAdmin: Gestor de servidor de base de datos
+        \item Docker: Gestor de maquinas virtuales
+    \end{itemize}
+    
+    Se utilizará \Gls{docker} como gestor de maquinas virtuales esta herramienta para descargar una maquina virtual de un servidor de base de datos \gls{mariadb}\cite{doc11} y un gestor de base de datos \gls{phpmyadmin}\cite{doc12} ya preconfigurada.\\
+\end{comment}
+
+\subsubsection{Virtualización de Contenedores: \Gls{docker}}
+
+\Gls{docker}\cite{doc10} es una plataforma de contenedores de código abierto. \Gls{docker} permite a los desarrolladores empaquetar aplicaciones en contenedores -componentes ejecutables estandarizados que combinan el código fuente de la aplicación con todas las bibliotecas y dependencias del sistema operativo (SO) necesarias para ejecutar el código en cualquier entorno.  \\
+
+Aunque los desarrolladores pueden crear contenedores sin \Gls{docker}, esta herramietna hace que sea más fácil, sencillo y seguro crear, desplegar y gestionar contenedores. Es esencialmente un conjunto de herramientas que permite a los desarrolladores construir, desplegar, ejecutar, actualizar y detener contenedores utilizando comandos simples y automatización que ahorra trabajo.\\
+
+Los contenedores ofrecen todas las ventajas de las máquinas virtuales, como el aislamiento de las aplicaciones, la escalabilidad rentable y la posibilidad de disponer de ellos.  \\
+
+Ventajas que proporciona \Gls{docker}:
+\begin{itemize}
+    \item \textbf{Gestión de dependencias}: Permite gestionar las dependencias desde el sistema operativo hasta detalles como las versiones de los paquetes de R y Latex.
+    
+    \item \textbf{Reproducibilidad}: Asegura que los análisis realizados son reproducibles.
+    
+    \item \textbf{Portabilidad}: Existe una gran portabilidad permitiendo que se pueda trasladar un contenedor a otras máquinas.
+    
+    \item \textbf{Espacio en disco}: Ocupa muy poco espacio en comparación con las maquinas virtuales.
+    
+    \item \textbf{Creación automática de contenedores}: \Gls{docker} puede construir automáticamente un contenedor basado en el código fuente de la aplicación.
+    
+    \item \textbf{Versionado de contenedores}: \Gls{docker} puede hacer un seguimiento de las versiones de una imagen de contenedor, retroceder a versiones anteriores y rastrear quién construyó una versión y cómo.
+    
+    \item \textbf{Reutilización de contenedores}: Los contenedores existentes pueden utilizarse como imágenes base, básicamente como plantillas para construir nuevos contenedores.
+    
+    \item \textbf{Bibliotecas de contenedores compartidas}: Los desarrolladores pueden acceder a un registro de código abierto que contiene miles de contenedores aportados por los distintos usuarios.
+\end{itemize}
+%\newpage
+%\cleardoublepage
+
+
+\subsubsection{Bases de datos}
+\paragraph{MariaDB}
+\gls{mariadb}\cite{doc11} es un sistema de gestión de bases de datos relacionales de código abierto. Al igual que otras bases de datos relacionales, MariaDB almacena los datos en tablas formadas por filas y columnas. Los usuarios pueden definir, manipular, controlar y consultar los datos mediante el lenguaje de consulta estructurado SQL.  \\
+
+\gls{mariadb} esta basado en \gls{mysql}, por lo que ambas comparten muchas características y opciones de diseño.  \\
+
+Ventajas de \gls{mariadb} con respecto a \gls{mysql}:
+\begin{itemize}
+    \item \gls{mariadb} tiene 12 nuevos motores de almacenamiento mientras que \gls{mysql} tiene menos motores.
+    \item \gls{mariadb} tiene un grupo de conexiones más grande que soporta hasta más de 200.000 conexiones, mientras que \gls{mysql} tiene un grupo de conexiones más pequeño.
+    \item En \gls{mariadb} la replicación de los datos es más rápida mientras que en \gls{mysql} es más lenta.
+    \item \gls{mariadb} es de código abierto, mientras que \gls{mysql} utiliza código propietario en su edición Enterprise.
+    \item Comparativamente \gls{mariadb} es más rápido que \gls{mysql}.
+\end{itemize}
+
+\paragraph{phpMyAdmin}
+\gls{phpmyadmin}\cite{doc12} es una herramienta de código abierto basada en \gls{php} que permite administrar bases de datos \gls{mysql} y \gls{mariadb} en línea. Ofrece una interfaz web amigable al usuario bajo el cual se puede gestionar todo lo relativo a una base de datos y permite ejecutar consultas de Lenguaje de Consulta Estructurado (\gls{sql}).
+%\newpage
+%\cleardoublepage
+
+\end{document}
