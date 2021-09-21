@@ -153,16 +153,16 @@ A continuación detallamos las peticiones que se utilizan para la obtención de 
 
 Con la información detallada de cada petición \gls{get} ya se puede realizar las peticiones a la \gls{ipa} de \Gls{reddit} para ir obteniendo la información que el usuario solicita.\\
 Por ejemplo, se desea realizar la siguiente petición ``\textit{Quiero obtener las 5 publicaciones con mayor votos en el subreddit WorldNews}``, la petición quedaría de la siguiente forma:
-\begin{lstlisting}
-https://www.reddit.com/r/WorldNews/top?limit=5
+\begin{lstlisting}[escapechar=|]
+|\href{https://www.reddit.com/r/WorldNews/top?limit=5}{https://www.reddit.com/r/WorldNews/top?limit=5}|
 \end{lstlisting}
 
 \vskip 0.2in
 
 Para obtener los datos de una forma estructurada la cual se puede procesar por la aplicación de una forma sencilla posteriormente, es necesario añadir el parámetro ``.json`` a la petición \gls{get} que se realice. Esto solicita a la \gls{ipa} de \Gls{reddit} que devuelva el resultado de una petición en un fichero \gls{json}, permitiendo solicitar los datos deseados de forma eficiente, ya que se devuelve el resultado con una estructura y el tiempo de respuesta para obtener dicho fichero es muy pequeño. \\
 Por ejemplo, para el caso anterior se quedaría de la siguiente forma:
-\begin{lstlisting}
-https://www.reddit.com/r/WorldNews/top.json?limit=5
+\begin{lstlisting}[escapechar=|]
+|\href{https://www.reddit.com/r/WorldNews/top.json?limit=5}{https://www.reddit.com/r/WorldNews/top.json?limit=5}|
 \end{lstlisting}
 
 \vskip 0.2in

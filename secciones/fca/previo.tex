@@ -7,7 +7,7 @@ Antes de dar la definición formal de \gls{afc}, es necesario recordar algunos c
 Para las definiciones que aparecen a continuación solo consideramos los conjuntos finitos de objetos.
 
 \begin{definicion}
-Se dice que una \textbf{relación binaria} R entre dos conjuntos A y B es un conjunto con todos los pares (a, b) con $a \in A$ y $b \in B$, es decir, un subconjunto de su producto Cartesiano $A \times B$, el conjunto de todos los pares de este tipo.
+Dados dos conjuntos $A$ y $B$, llamamos \textbf{relación binaria} a un subconjunto $R$ del producto cartesiano $A\times B$. Por tanto, los elementos de $R$ serán pares $(a,b)$ donde $a\in A, b\in B$.
 \end{definicion}
 
 También se puede escribir de la forma $aRb$ en vez de $(a,b) \in R$. 
@@ -16,7 +16,7 @@ Si $A = B$ entonces $R \subseteq A \times A$ es llamado una relación binaria so
 
 
 \begin{definicion}
-Se dice que R una relación binaria R sobre un conjunto A es una \textbf{relación de orden parcial}, si satisface las siguientes condiciones para todos los elementos $a,b,c \in A$:
+Se dice que R una relación binaria R sobre un conjunto A es una \textbf{relación de orden}, si satisface las siguientes condiciones para todos los elementos $a,b,c \in A$:
 \begin{itemize}
     \item $aRa$ (reflexividad)
     \item $aRb$ y $bRa \Longrightarrow a = b$ (simetría)
@@ -24,23 +24,27 @@ Se dice que R una relación binaria R sobre un conjunto A es una \textbf{relaci�
 \end{itemize}
 \end{definicion}
 
-Se usa el símbolo $\leq$ para el orden parcial, y en caso de $a \neq b$ y $a \leq b$ se escribe $a \leq b$. Se lee $a \leq b$ como ``a es menor o igual a b``. 
-Un conjunto parcialmente ordenado es un par $(P, \leq)$, dónde \textit{P} es un conjunto y $\leq$ es una relación de orden parcial sobre \textit{P}.
+Si dados $a, b\in A$, siempre tenemos bien $aRb$ ($a\le b$) o $bRa$ ($b\le a$) entonces se denomina relación de orden \textbf{total}. En caso contrario, se denomina \textbf{parcial}. 
 
+Se usa el símbolo $\leq$ para el orden parcial, y en caso de $a \neq b$ y $a \leq b$ se escribe $a < b$. Se lee $a \le b$ como ``a es menor o igual a b``. 
+
+\begin{definicion}
+Un \textit{conjunto parcialmente ordenado} o \textit{poset} es un par $(P, \leq)$, donde \textit{P} es un conjunto y $\leq$ es una relación de orden parcial sobre \textit{P}.
+\end{definicion}
 
 \begin{definicion}
 Dado un conjunto parcialmente ordenado $(P,\leq)$, un elemento a es \textbf{anterior} a b, si $a \leq b$ y no un elemento c tal que $a \leq c \leq b$ . En este caso, b es \textbf{posterior} a, y se escribe como $a \prec b$.
 \end{definicion}
 
 Todo conjunto parcialmente ordenado finito $(P,\leq)$ se puede dibujar como un \gls{hasse}. 
-Elementos de \textit{P} se representan mediante círculos pequeños en el plano. Si $a \leq b$, el círculo correspondiente a \textit{a} se representa en un punto más alto que el círculo correspondiente a \textit{b}, y los dos círculos están conectados mediante una línea. 
+Elementos de \textit{P} se representan mediante círculos pequeños en el plano. Si $a \prec b$, el círculo correspondiente a \textit{a} se representa en un punto más alto que el círculo correspondiente a \textit{b}, y los dos círculos están conectados mediante una línea. 
 
 
 \begin{definicion}
-Sea $(P,\leq)$ un conjunto parcialmente ordenado y A un subconjunto de $P$. Una \textbf{cota inferior} de $A$ es un elemento $l$ de $P$ con $l \leq A$ para todo $a \in A$. Una \textbf{cota superior} de $A$ se define de forma análoga. Se denomina ínfimo de $A$ a la mayor de estas cotas inferiores y se denota como $inf A$ o $\bigwedge A$. De forma análoga, se denomina supremo de $A$ a la menor de estas cotas superiores y se denota como $sup A$ o $\bigvee A$.
+Sea $(P,\leq)$ un conjunto parcialmente ordenado y A un subconjunto de $P$. Una \textbf{cota inferior} de $A$ es un elemento $l$ de $P$ con $l \leq A$ para todo $a \in A$. Una \textbf{cota superior} de $A$ se define de forma análoga. Se denomina ínfimo de $A$ a la mayor de estas cotas inferiores y se denota como $\inf A$ o $\bigwedge A$. De forma análoga, se denomina supremo de $A$ a la menor de estas cotas superiores y se denota como $\sup A$ o $\bigvee A$.
 \end{definicion}
 
-Para $A = {\{a,b\}}$ también se puede escribir $x \wedge y$ para $inf A$ y $x \vee y$ para $sup A$.
+Para $A = {\{a,b\}}$ también se puede escribir $a \wedge b$ para $\inf A$ y $a \vee b$ para $\sup A$.
 
 
 \begin{definicion}
@@ -50,17 +54,27 @@ Un conjunto parcialmente ordenado $\textbf{L} = (L, \leq)$ es un retículo, si p
 A continuación, detallamos la base para el funcionamiento de \gls{afc} y los contextos formales.
 
 \begin{definicion}
-Sea $\varphi : P \rightarrow Q$ y $\psi : P \rightarrow Q$ sean funciones biyectivas entre dos conjuntos parcialmente ordenados $(P,\leq)$ y $(Q,\leq)$. Esta pareja de funciones se llama una \textbf{conexión de Galois} entre conjuntos ordenados si:
+Sea $\varphi : P \rightarrow Q$ y $\psi : P \rightarrow Q$ sean funciones entre dos conjuntos parcialmente ordenados $(P,\leq)$ y $(Q,\leq)$. Esta pareja de funciones se llama una \textbf{conexión de Galois} entre conjuntos ordenados si:
 \begin{itemize}
-    \item $p_1 \leq p_2 \Longrightarrow \varphi p_1 \geq \varphi p_2$
-    \item $p_1 \leq p_2 \Longrightarrow \psi p_1 \geq \psi q_2$
+    \item $p_1 \leq p_2 \Longrightarrow \varphi(p_1) \geq \varphi(p_2)$
+    \item $p_1 \leq p_2 \Longrightarrow \psi(p_1) \geq \psi(q_2)$
     \item $p \leq \psi \varphi p \Longrightarrow q \leq \varphi \psi q$
 \end{itemize}
 \end{definicion}
 
+
 \begin{definicion}
-Un \textbf{contexto formal} $\mathbb{K} = (G, M, I)$ consiste en dos conjuntos $G$ y $M$ y una relación $I$ entre $G$ y $M$. Los elementos de $G$ se llaman \textbf{objetos} y los elementos de $M$ se llaman \textbf{atributos} del contexto. La notación $gIm$ o $(g, m) \in I$ significa que el objeto $g$ tiene el atributo $m$.
+Un retículo de concepto de un contexto formal $\mathbb{K} = (G, M, I)$ es una estructura definida como $\langle \mathbb{K}, \leq \rangle$, dónde $\langle \mathbb{K}, \leq \rangle$ es una colección de todos los conceptos formales.
 \end{definicion}
+
+\begin{definicion}
+Un \textbf{concepto formal} $\mathbb{K} = (G, M, I)$ consiste en dos conjuntos $G$ y $M$ y una relación $I$ entre $G$ y $M$. Los elementos de $G$ se llaman \textbf{objetos} y los elementos de $M$ se llaman \textbf{atributos} del contexto. La notación $gIm$ o $(g, m) \in I$ significa que el objeto $g$ tiene el atributo $m$.
+\end{definicion}
+
+
+\begin{teorema}
+El conjunto de todos los conceptos formales de un contexto $\mathbb{K}$ junto con relación de orden I forman un retículo completo, llamado el \textbf{retículo de conceptos} de $\mathbb{K}$ y se denota por $\underline{\mathfrak{B}}(\mathbb{K})$.
+\end{teorema}
 
 
 \begin{definicion}
@@ -76,22 +90,22 @@ y, para $B \subseteq M$, sea
 Estos operadores se llaman \textbf{operadores de derivación} para $\mathbb{K} = (G, M, I)$
 
 
-\begin{definicion}
+\begin{teorema}
 Sea $(G, M, I)$ un contexto formal, los subconjuntos $A, A_1, A_2 \subseteq G$ y $B \subseteq M$ tenemos que:
 \begin{itemize}
-    \item $A_1 \subseteq A_2 \Longleftrightarrow A_1^{'} \subseteq A_2^{'}$
+    \item $A_1 \subseteq A_2 \Longleftrightarrow A_2^{'} \subseteq A_1^{'}$
     \item $A \subseteq A^{''}$
-    \item $A = A^{'''} (por\;tanto, A^{''''} = A^{''})$
+    \item $A^{'} = A^{'''} (por\;tanto, A^{''''} = A^{''})$
     \item $(A_1 \cup A_2)^{'} = A_1^{'} \cap A_2^{'}$
     \item $A \subseteq B^{'} \Longleftrightarrow B \subseteq A^{'} \Longleftrightarrow A \times B \subseteq I$
 \end{itemize}
-\end{definicion}
+\end{teorema}
 
 Para el subconjunto de atributos también se aplica propiedades parecidas.
 
 
 \begin{definicion}
-Un \textbf{operador de cierre} sobre el conjunto G es función biyectiva $\varphi : 2^{G} \longrightarrow 2^{G}$ con las siguientes propiedades:
+Un \textbf{operador de cierre} sobre el conjunto G es función $\varphi : 2^{G} \longrightarrow 2^{G}$ con las siguientes propiedades:
 \begin{itemize}
     \item $\varphi \varphi X = \varphi X$ (\textbf{idempotencia})
     \item $X \subseteq \varphi X$ (\textbf{extensión})
@@ -103,6 +117,10 @@ Un \textbf{operador de cierre} sobre el conjunto G es función biyectiva $\varph
 \end{center}
 \end{definicion}
 
+
+\begin{definicion}
+Un \textbf{contexto formal} $(A, B)$ con $A\subseteq G$, $B\subseteq M$ tales que $A' = B, B' = A$. En particular, $B$ es un conjunto cerrado para el operador de cierre resultado de componer los operadores de derivación.
+\end{definicion}
 
 
 \begin{definicion}
